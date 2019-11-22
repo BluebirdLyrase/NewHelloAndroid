@@ -11,6 +11,10 @@ public class Restaurant extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    public Restaurant(){
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,5 @@ public class Restaurant extends AppCompatActivity {
         String[] myDataset = {"item1","item2","item3"};
         mAdapter = new MyAdapter(myDataset);
         recyclerView.setAdapter(mAdapter);
-
     }
 }
