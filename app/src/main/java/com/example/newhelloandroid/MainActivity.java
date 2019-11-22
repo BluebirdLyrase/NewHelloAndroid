@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -28,44 +29,34 @@ public class MainActivity extends AppCompatActivity {
         testFirestore();
     }
 
-    public void sendMessage(View view) {
-        Intent intent = new Intent(this, disaply.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-
-
-        Log.d("editText",message);
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-        Toast.makeText(getApplicationContext(),"Send Message Clicked",Toast.LENGTH_SHORT).show();
-    }
-
-    public void wrong(View view) {
-        Toast.makeText(getApplicationContext(),"WRONG",Toast.LENGTH_SHORT).show();
-    }
-
     public void testFirestore(){
         final String TAG = "testFirestore";
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Category")
+        db.collection("Resturant")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+//                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                Log.d(TAG, document.getId() + " => " + document.get("name"));
+                                Log.d(TAG, document.getId() + " => " + document.get("img"));
                             }
                         } else {
                             Log.w(TAG,"Error getting documents.", task.getException());
                         }
                     }
                 });
+
+//        DocumentReference docRef = db.collection("Resturant").document("name");
     }
+
+
 
     public void Login(View view) {
 
-        Intent intent = new Intent(this, disaply.class);
+        Intent intent = new Intent(this, Restaurant.class);
         EditText editText2 = (EditText) findViewById(R.id.name);
         String name = editText2.getText().toString();
         EditText editText3 = (EditText) findViewById(R.id.password);
@@ -79,10 +70,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void openListPage(View view){
-        Intent intent = new Intent(this,ListActivity.class);
-        startActivity(intent);
-    }
 
 
 
