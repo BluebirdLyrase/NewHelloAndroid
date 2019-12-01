@@ -22,6 +22,7 @@ public class Restaurant extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<String> restaurantsList = new ArrayList<String>();
     private ArrayList<String> pic = new ArrayList<String>();
+    private ArrayList<String> catagory = new ArrayList<String>();
     private ArrayList<Integer> id = new ArrayList<Integer>();
 
     @Override
@@ -54,10 +55,12 @@ public class Restaurant extends AppCompatActivity {
                                 restaurantsList.add(document.get("name").toString());
                                 pic.add(document.get("img").toString());
                                 id.add(Integer.parseInt(document.get("id").toString()));
+                                catagory.add(document.get("catagory").toString());
                             }
-                            String[] myData = restaurantsList.toArray(new String[0]);
-                            String[] myPic = pic.toArray(new String[0]);
-                            mAdapter = new CustomAdepter(Restaurant.this,myPic,myData,myData);
+                            String[] name = restaurantsList.toArray(new String[0]);
+                            String[] Pic = pic.toArray(new String[0]);
+                            String[] Catagory = catagory.toArray(new String[0]);
+                            mAdapter = new CustomAdepter(Restaurant.this,Pic,name,Catagory);
 //                            mAdapter = new MyAdapter(myData);
                             recyclerView.setAdapter(mAdapter);
                         } else {

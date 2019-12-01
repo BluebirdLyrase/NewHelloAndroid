@@ -33,8 +33,9 @@
                 android:layout_height="match_parent"
                 android:text="Title here"
                 android:textColor="@color/colorAccent"
-                android:textSize="36dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/subtitle"
                 android:layout_width="match_parent"
