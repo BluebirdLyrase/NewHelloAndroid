@@ -3,4 +3,6 @@
     <string name="title_activity_disaply">disaply</string>
     <string name="Name">Enter Name</string>
     <string name="Password">Enter Password</string>
+    <string name="login">login</string>
+    <string name="Email">Enter your E-mail</string>
 </resources>

@@ -20,8 +20,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 
-public class MainActivity extends AppCompatActivity {
 
+public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     private FirebaseAuth mAuth;
     @Override
@@ -46,54 +46,43 @@ public class MainActivity extends AppCompatActivity {
 //                              Log.d(TAG, document.getId() + " => " + document.getData());
                                 Log.d(TAG, document.getId() + " => " + document.get("name"));
                                 Log.d(TAG, document.getId() + " => " + document.get("img"));
+
                             }
                         } else {
                             Log.w(TAG,"Error getting documents.", task.getException());
                         }
                     }
                 });
-
-//        DocumentReference docRef = db.collection("Resturant").document("name");
     }
 
 
 
     public void Login(View view) {
-        final String TAG = "signInClick";
-        String email = ((TextView)findViewById(R.id.name)).getText().toString();
-        String password = ((TextView)findViewById(R.id.password)).getText().toString();
+//        final String TAG = "signInClick";
+//        String email = ((TextView)findViewById(R.id.name)).getText().toString();
+//        String password = ((TextView)findViewById(R.id.password)).getText().toString();
         final Intent intent = new Intent(this, Restaurant.class);
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(getApplicationContext(),"Log in success",Toast.LENGTH_SHORT).show();
+//        mAuth.signInWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d(TAG, "signInWithEmail:success");
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            Toast.makeText(getApplicationContext(),"Log in success",Toast.LENGTH_SHORT).show();
                             startActivity(intent);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(getApplicationContext(),"Log in Fail",Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-                });
-
-
-//        EditText editText2 = (EditText) findViewById(R.id.name);
-//        String name = editText2.getText().toString();
-//        EditText editText3 = (EditText) findViewById(R.id.password);
-//        String password = editText3.getText().toString();
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+//                            Toast.makeText(getApplicationContext(),"Log in Fail",Toast.LENGTH_SHORT).show();
 //
-//        if(name.equals("user")&&password.equals("1234")){
-//            startActivity(intent);
-//            Toast.makeText(getApplicationContext(),"Loged in",Toast.LENGTH_SHORT).show();
-//        }else{
-//            Toast.makeText(getApplicationContext(),"Rock in Fail",Toast.LENGTH_SHORT).show();
-//        }
+//                        }
+//                    }
+//                });
+
+
+
     }
 
 
