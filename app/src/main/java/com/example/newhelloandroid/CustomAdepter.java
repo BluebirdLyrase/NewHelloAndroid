@@ -15,18 +15,18 @@ public class CustomAdepter  extends RecyclerView.Adapter<CustomAdepter.MyViewHol
         private String[] msubTitle;
 
         public static class MyViewHolder extends RecyclerView.ViewHolder {
-
             TextView title;
             TextView subtitle;
             ImageView imgView;
-
             public MyViewHolder(View itemView) {
                 super(itemView);
-
                 this.title = (TextView) itemView.findViewById(R.id.title);
                 this.subtitle = (TextView) itemView.findViewById(R.id.subtitle);
                 this.imgView = (ImageView) itemView.findViewById(R.id.imgcar);
             }
+
+//            public interface OnCardListener
+
         }
 
         public CustomAdepter(Context mContext, String[] image,String[] title,String[] subTitle) {
@@ -40,25 +40,23 @@ public class CustomAdepter  extends RecyclerView.Adapter<CustomAdepter.MyViewHol
         public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardlayout, parent, false);
-
             MyViewHolder myViewHolder = new MyViewHolder(view);
             return myViewHolder;
         }
 
         @Override
         public void onBindViewHolder(final MyViewHolder holder, final int i) {
-
-
             holder.title.setText(mTitle[i]);
             holder.subtitle.setText(msubTitle[i]);
             Picasso.with(mContext).load(mImage[i]).into(holder.imgView);
-
-
         }
-
         @Override
         public int getItemCount() {
             return mTitle.length;
         }
+
+
     }
+
+
 

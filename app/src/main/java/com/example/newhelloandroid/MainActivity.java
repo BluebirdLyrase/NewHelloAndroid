@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+        
     }
 
 
@@ -66,5 +67,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         }
+    }
+
+    public void Detail(View view){
+        String name = ((TextView)findViewById(R.id.title)).getText().toString();
+        System.out.println(name);
+
     }
 }

@@ -35,10 +35,6 @@ public class Restaurant extends AppCompatActivity {
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-//        System.out.println("test00200"+restaurantName()[0]);
-//         specify an adapter (see also next example)
-//
-//        String[] mydataset = {"j","g"};
         final String TAG = "testFirestore";
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 

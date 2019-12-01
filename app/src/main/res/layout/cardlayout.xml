@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,24 +8,30 @@
     android:elevation="6dp"
     android:layout_margin="6dp"
     android:background="@android:color/holo_blue_dark">
+
     <LinearLayout
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:weightSum="2"
-        android:orientation="horizontal">
+        android:clickable="true"
+        android:contentDescription="ThisID"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
         <ImageView
             android:id="@+id/imgcar"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight="1"
+            android:contentDescription="id"
             android:src="@drawable/saitama" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_margin="2dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView

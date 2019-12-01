@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">NewHelloAndroid</string>
+    <string name="app_name">Alpaca-Android</string>
     <string name="title_activity_disaply">disaply</string>
     <string name="Name">Enter Name</string>
     <string name="Password">Enter Password</string>
     <string name="login">login</string>
     <string name="Email">Enter your E-mail</string>
+    <string name="see_detail">see detail</string>
 </resources>
