@@ -41,7 +41,7 @@ public class Restaurant extends AppCompatActivity {
         final String TAG = "testFirestore";
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("Resturant").orderBy("name").limit(9)
+        db.collection("Resturant").orderBy("name").limit(15)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -57,7 +57,7 @@ public class Restaurant extends AppCompatActivity {
                             }
                             String[] myData = restaurantsList.toArray(new String[0]);
                             String[] myPic = pic.toArray(new String[0]);
-                            mAdapter = new CustomAdepter(Restaurant.this,myPic,myData,myData);
+                            mAdapter = new com.example.newhelloandroid.CustomAdepter(Restaurant.this,myPic,myData,myData);
 //                            mAdapter = new MyAdapter(myData);
                             recyclerView.setAdapter(mAdapter);
                         } else {
