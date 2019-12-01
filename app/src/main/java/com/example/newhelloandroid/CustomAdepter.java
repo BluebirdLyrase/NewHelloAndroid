@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 public class CustomAdepter  extends RecyclerView.Adapter<CustomAdepter.MyViewHolder>{
         private Context mContext;
-        private Integer[] mImage;
+        private String[] mImage;
         private String[] mTitle;
         private String[] msubTitle;
 
@@ -29,7 +29,7 @@ public class CustomAdepter  extends RecyclerView.Adapter<CustomAdepter.MyViewHol
             }
         }
 
-        public CustomAdepter(Context mContext, Integer[] image,String[] title,String[] subTitle) {
+        public CustomAdepter(Context mContext, String[] image,String[] title,String[] subTitle) {
             this.mContext = mContext;
             this.mImage = image;
             this.mTitle = title;

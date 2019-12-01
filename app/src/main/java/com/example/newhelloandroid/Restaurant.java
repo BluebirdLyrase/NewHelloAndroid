@@ -55,12 +55,9 @@ public class Restaurant extends AppCompatActivity {
                                 pic.add(document.get("img").toString());
                                 id.add(Integer.parseInt(document.get("id").toString()));
                             }
-                            Integer[] drawableArray = {R.drawable.saitama, R.drawable.saitama, R.drawable.saitama,
-                                    R.drawable.saitama, R.drawable.saitama,R.drawable.saitama, R.drawable.saitama, R.drawable.saitama,
-                                    R.drawable.saitama, R.drawable.saitama};
                             String[] myData = restaurantsList.toArray(new String[0]);
-                            String[] myData2 = pic.toArray(new String[0]);
-                            mAdapter = new CustomAdepter(Restaurant.this,drawableArray,myData,myData);
+                            String[] myPic = pic.toArray(new String[0]);
+                            mAdapter = new CustomAdepter(Restaurant.this,myPic,myData,myData);
 //                            mAdapter = new MyAdapter(myData);
                             recyclerView.setAdapter(mAdapter);
                         } else {
