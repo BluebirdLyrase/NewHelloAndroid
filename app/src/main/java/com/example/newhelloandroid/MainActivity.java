@@ -30,32 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
-        testFirestore();
     }
-
-    public void testFirestore(){
-        final String TAG = "testFirestore";
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Resturant")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                              Log.d(TAG, document.getId() + " => " + document.getData());
-                                Log.d(TAG, document.getId() + " => " + document.get("name"));
-                                Log.d(TAG, document.getId() + " => " + document.get("img"));
-
-                            }
-                        } else {
-                            Log.w(TAG,"Error getting documents.", task.getException());
-                        }
-                    }
-                });
-    }
-
-
 
     public void Login(View view) {
 //        final String TAG = "signInClick";

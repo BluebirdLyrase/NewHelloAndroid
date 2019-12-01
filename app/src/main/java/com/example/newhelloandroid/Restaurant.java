@@ -21,6 +21,8 @@ public class Restaurant extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<String> restaurantsList = new ArrayList<String>();
+    private ArrayList<String> pic = new ArrayList<String>();
+    private ArrayList<Integer> id = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class Restaurant extends AppCompatActivity {
         final String TAG = "testFirestore";
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        db.collection("Resturant").orderBy("name").limit(20)
+        db.collection("Resturant").orderBy("name").limit(9)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -50,9 +52,16 @@ public class Restaurant extends AppCompatActivity {
 //                                Log.d(TAG, document.getId() + " => " + document.get("name"));
 //                                Log.d(TAG, document.getId() + " => " + document.get("img"));
                                 restaurantsList.add(document.get("name").toString());
+                                pic.add(document.get("img").toString());
+                                id.add(Integer.parseInt(document.get("id").toString()));
                             }
+                            Integer[] drawableArray = {R.drawable.saitama, R.drawable.saitama, R.drawable.saitama,
+                                    R.drawable.saitama, R.drawable.saitama,R.drawable.saitama, R.drawable.saitama, R.drawable.saitama,
+                                    R.drawable.saitama, R.drawable.saitama};
                             String[] myData = restaurantsList.toArray(new String[0]);
-                            mAdapter = new MyAdapter(myData);
+                            String[] myData2 = pic.toArray(new String[0]);
+                            mAdapter = new CustomAdepter(Restaurant.this,drawableArray,myData,myData);
+//                            mAdapter = new MyAdapter(myData);
                             recyclerView.setAdapter(mAdapter);
                         } else {
                             Log.w(TAG,"Error getting documents.", task.getException());
