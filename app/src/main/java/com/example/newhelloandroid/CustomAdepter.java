@@ -13,39 +13,50 @@ public class CustomAdepter  extends RecyclerView.Adapter<CustomAdepter.MyViewHol
         private String[] mImage;
         private String[] mTitle;
         private String[] msubTitle;
+        private OnNoteListener mOnNoteListener;
 
-        public static class MyViewHolder extends RecyclerView.ViewHolder {
+        public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
             TextView title;
             TextView subtitle;
             ImageView imgView;
-            public MyViewHolder(View itemView) {
+            OnNoteListener onNoteListener;
+
+            public MyViewHolder(View itemView,OnNoteListener onNoteListener) {
                 super(itemView);
                 this.title = (TextView) itemView.findViewById(R.id.title);
                 this.subtitle = (TextView) itemView.findViewById(R.id.subtitle);
                 this.imgView = (ImageView) itemView.findViewById(R.id.imgcar);
+                this. onNoteListener = onNoteListener ;
+                itemView.setOnClickListener(this);
+            }
+
+            @Override
+            public void onClick(View v) {
+                onNoteListener.onNoteClick(getAdapterPosition());
             }
 
 //            public interface OnCardListener
 
         }
 
-        public CustomAdepter(Context mContext, String[] image,String[] title,String[] subTitle) {
+        public CustomAdepter(Context mContext, String[] image,String[] title,String[] subTitle,OnNoteListener onNoteListener) {
             this.mContext = mContext;
             this.mImage = image;
             this.mTitle = title;
             this.msubTitle = subTitle;
+            this.mOnNoteListener = onNoteListener;
         }
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardlayout, parent, false);
-            MyViewHolder myViewHolder = new MyViewHolder(view);
+            MyViewHolder myViewHolder = new MyViewHolder(view,mOnNoteListener);
             return myViewHolder;
         }
 
         @Override
-        public void onBindViewHolder(final MyViewHolder holder, final int i) {
+        public void onBindViewHolder (final MyViewHolder holder, final int i) {
             holder.title.setText(mTitle[i]);
             holder.subtitle.setText(msubTitle[i]);
             Picasso.with(mContext).load(mImage[i]).into(holder.imgView);
@@ -55,6 +66,10 @@ public class CustomAdepter  extends RecyclerView.Adapter<CustomAdepter.MyViewHol
             return mTitle.length;
         }
 
+        public interface OnNoteListener{
+        void onNoteClick(int position);
+
+    }
 
     }
 

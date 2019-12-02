@@ -50,7 +50,7 @@ public class Restaurant extends AppCompatActivity implements CustomAdepter.OnNot
 //                                Log.d(TAG, document.getId() + " => " + document.get("img"));
                                 restaurantsList.add(document.get("name").toString());
                                 pic.add(document.get("img").toString());
-                                id.add(document.get("id").toString());
+                                id.add(document.getId());
                                 catagory.add(document.get("catagory").toString());
                             }
                             ID = id.toArray(new String[0]);
