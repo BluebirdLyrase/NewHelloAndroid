@@ -68,10 +68,4 @@ public class MainActivity extends AppCompatActivity {
                 });
         }
     }
-
-    public void Detail(View view){
-        String name = ((TextView)findViewById(R.id.title)).getText().toString();
-        System.out.println(name);
-
-    }
 }

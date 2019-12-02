@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -16,15 +17,15 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class Restaurant extends AppCompatActivity {
+public class Restaurant extends AppCompatActivity implements CustomAdepter.OnNoteListener {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<String> restaurantsList = new ArrayList<String>();
     private ArrayList<String> pic = new ArrayList<String>();
     private ArrayList<String> catagory = new ArrayList<String>();
-    private ArrayList<Integer> id = new ArrayList<Integer>();
-
+    private ArrayList<String> id = new ArrayList<String>();
+    private String[] ID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,6 @@ public class Restaurant extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         final String TAG = "testFirestore";
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
         db.collection("Resturant").orderBy("name").limit(9)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -50,13 +50,14 @@ public class Restaurant extends AppCompatActivity {
 //                                Log.d(TAG, document.getId() + " => " + document.get("img"));
                                 restaurantsList.add(document.get("name").toString());
                                 pic.add(document.get("img").toString());
-                                id.add(Integer.parseInt(document.get("id").toString()));
+                                id.add(document.get("id").toString());
                                 catagory.add(document.get("catagory").toString());
                             }
+                            ID = id.toArray(new String[0]);
                             String[] name = restaurantsList.toArray(new String[0]);
                             String[] Pic = pic.toArray(new String[0]);
                             String[] Catagory = catagory.toArray(new String[0]);
-                            mAdapter = new CustomAdepter(Restaurant.this,Pic,name,Catagory);
+                            mAdapter = new CustomAdepter(Restaurant.this,Pic,name,Catagory,Restaurant.this);
 //                            mAdapter = new MyAdapter(myData);
                             recyclerView.setAdapter(mAdapter);
                         } else {
@@ -65,4 +66,15 @@ public class Restaurant extends AppCompatActivity {
                     }
                 });
     }
+
+    @Override
+        public  void onNoteClick(int position){
+            System.out.println("position:"+position+ID[position]);
+           Intent intent = new Intent(this,Detail.class);
+           intent.putExtra("positionID",ID[position]);
+           startActivity(intent);
+        }
+
+
+
 }
