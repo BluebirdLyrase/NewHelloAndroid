@@ -18,6 +18,7 @@
         android:gravity="center"
         android:text="TextView"
         android:textSize="30dp"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,17 +29,14 @@
         android:layout_width="242dp"
         android:layout_height="194dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="420dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/food_alpaca" />
 
     <TextView
         android:id="@+id/status"
-        android:layout_width="135dp"
+        android:layout_width="100dp"
         android:layout_height="33dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
@@ -46,25 +44,23 @@
         android:text="status"
         android:textSize="20dp"
         app:layout_constraintEnd_toStartOf="@+id/distance"
-        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Name" />
 
     <TextView
         android:id="@+id/star"
-        android:layout_width="135dp"
+        android:layout_width="100dp"
         android:layout_height="33dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:text="star"
         android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.011"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/status" />
+        app:layout_constraintEnd_toStartOf="@+id/distance"
+        app:layout_constraintStart_toEndOf="@+id/status"
+        app:layout_constraintTop_toBottomOf="@+id/Name" />
 
     <TextView
+        android:textColor="@color/colorAccent"
         android:id="@+id/FoodList"
         android:layout_width="135dp"
         android:layout_height="33dp"
@@ -73,13 +69,14 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="Food List"
-        android:textSize="20dp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.011"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/star"
         app:layout_constraintVertical_bias="0.0" />
+
 
     <TextView
         android:id="@+id/distance"
@@ -96,9 +93,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="410dp"
-        android:layout_height="333dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FoodList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

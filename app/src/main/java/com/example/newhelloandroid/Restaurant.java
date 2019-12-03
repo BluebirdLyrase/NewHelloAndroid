@@ -58,7 +58,6 @@ public class Restaurant extends AppCompatActivity implements CustomAdepter.OnNot
                             String[] Pic = pic.toArray(new String[0]);
                             String[] Catagory = catagory.toArray(new String[0]);
                             mAdapter = new CustomAdepter(Restaurant.this,Pic,name,Catagory,Restaurant.this);
-//                            mAdapter = new MyAdapter(myData);
                             recyclerView.setAdapter(mAdapter);
                         } else {
                             Log.w(TAG,"Error getting documents.", task.getException());

@@ -2,8 +2,12 @@ package com.example.newhelloandroid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,15 +16,23 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
-public class Detail extends AppCompatActivity{
+import java.util.ArrayList;
+
+public class Detail extends AppCompatActivity {
     String ResnameDB;
     String imageViewDB;
+    private RecyclerView.LayoutManager layoutManager;
     String starDB;
     String statusDB;
     String distanceDB;
-
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView recyclerView;
+    private ArrayList<String> name = new ArrayList<String>();
+    private ArrayList<String> aprice = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +42,7 @@ public class Detail extends AppCompatActivity{
         String ResID = extras.getString("positionID");
         System.out.println("positionID = "+ResID);
         createLayout(ResID);
+        createFoodcard(ResID);
         super.onCreate(savedInstanceState);
 
 
@@ -37,7 +50,8 @@ public class Detail extends AppCompatActivity{
     }
 
     public void createLayout(String ResID){
-        final String TAG = "testFirestore";
+        setContentView(R.layout.activity_detail);
+        final String TAG = "LayoutFirestore";
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Resturant").document(ResID)
                 .get()
@@ -57,7 +71,6 @@ public class Detail extends AppCompatActivity{
                                 }
                                 distanceDB = document.get("distance").toString();
                                 System.out.println("Data from firebase"+ResnameDB+starDB+statusDB);
-                            setContentView(R.layout.activity_detail);
                             TextView Resname = (TextView) findViewById(R.id.Name);
                             TextView star = (TextView) findViewById(R.id.star);
                             TextView status = (TextView) findViewById(R.id.status);
@@ -68,6 +81,15 @@ public class Detail extends AppCompatActivity{
                             distance.setText("Distance:"+distanceDB);
                             status.setText(statusDB);
                             Picasso.with(Detail.this).load(imageViewDB).into(imageView);
+                            ////////////////////////foodcard/////////////////////////////
+
+
+
+
+
+
+
+
                         } else {
                             Log.w(TAG,"Error getting documents.", task.getException());
                         }
@@ -76,5 +98,38 @@ public class Detail extends AppCompatActivity{
 
 
     }
+
+    public void createFoodcard(String ResID) {
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        final String TAG = "testFirestore foodcard";
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Resturant").document(ResID).collection("Food")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                name.add(document.get("name").toString());
+                                aprice.add(document.get("price").toString());
+                            }
+                            String food[] = name.toArray(new String[0]);
+                            String price[] = aprice.toArray(new String[0]);
+                            mAdapter = new FoodAdepter(food,price);
+                            recyclerView.setAdapter(mAdapter);;
+                        } else {
+                            Log.w(TAG,"Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+
+
+    }
+
 
 }
