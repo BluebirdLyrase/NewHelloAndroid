@@ -78,18 +78,10 @@ public class Detail extends AppCompatActivity {
                             ImageView imageView = (ImageView) findViewById(R.id.imageView);
                             Resname.setText(ResnameDB);
                             star.setText("Rating:"+starDB);
-                            distance.setText("Distance:"+distanceDB);
+                            distance.setText("Distance:"+distanceDB+" km");
                             status.setText(statusDB);
                             Picasso.with(Detail.this).load(imageViewDB).into(imageView);
                             ////////////////////////foodcard/////////////////////////////
-
-
-
-
-
-
-
-
                         } else {
                             Log.w(TAG,"Error getting documents.", task.getException());
                         }

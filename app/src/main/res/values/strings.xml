@@ -6,4 +6,15 @@
     <string name="login">login</string>
     <string name="Email">Enter your E-mail</string>
     <string name="see_detail">see detail</string>
+    <string name="restaurant_name">Restaurant Name</string>
+    <string name="imgdes">This is the image of the selected the Restaurant</string>
+    <string name="status">status</string>
+    <string name="star">star</string>
+    <string name="Food_List">Food List</string>
+    <string name="distance">distance</string>
+    <string name="hintpassword">password</string>
+    <string name="AppPic">This is the picture of ma app</string>
+    <string name="Food_name">Food name</string>
+    <string name="Food_Price">food price</string>
+    <string name="plus">+</string>
 </resources>
